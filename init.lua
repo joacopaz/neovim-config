@@ -144,7 +144,7 @@ local rtp = vim.opt.rtp
 rtp:prepend(lazypath)
 
 -- Custom config
-require 'custom.my-config'
+require 'custom.config'
 
 -- [[ Configure and install plugins ]]
 --
