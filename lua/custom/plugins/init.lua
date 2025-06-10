@@ -6,6 +6,9 @@ return {
       'neovim/nvim-lspconfig',
     },
     opts = {
+      expose_as_code_action = 'all',
+      complete_function_calls = false,
+      jsx_close_tag = { enable = true, filetypes = { 'javascriptreact', 'typescriptreact' } },
       settings = {
         separate_diagnostic_server = true,
         publish_diagnostic_on = 'insert_leave',
