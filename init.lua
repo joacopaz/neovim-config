@@ -261,13 +261,6 @@ require('lazy').setup({
     'nvim-telescope/telescope.nvim',
     event = 'VimEnter',
     dependencies = {
-      {
-        'isak102/telescope-git-file-history.nvim',
-        dependencies = {
-          'nvim-lua/plenary.nvim',
-          'tpope/vim-fugitive',
-        },
-      },
       'nvim-lua/plenary.nvim',
       { -- If encountering errors, see telescope-fzf-native README for installation instructions
         'nvim-telescope/telescope-fzf-native.nvim',
@@ -333,27 +326,12 @@ require('lazy').setup({
           ['ui-select'] = {
             require('telescope.themes').get_dropdown(),
           },
-          git_file_history = {
-            mappings = {
-              i = {
-                ['<C-g>'] = require('telescope').extensions.git_file_history.actions.open_in_browser,
-              },
-              n = {
-                ['<C-g>'] = require('telescope').extensions.git_file_history.actions.open_in_browser,
-              },
-            },
-
-            -- The command to use for opening the browser (nil or string)
-            -- If nil, it will check if xdg-open, open, start, wslview are available, in that order.
-            browser_command = nil,
-          },
         },
       }
 
       -- Enable Telescope extensions if they are installed
       pcall(require('telescope').load_extension, 'fzf')
       pcall(require('telescope').load_extension, 'ui-select')
-      pcall(require('telescope').load_extension, 'git_file_history')
 
       -- See `:help telescope.builtin`
       local builtin = require 'telescope.builtin'
