@@ -333,6 +333,20 @@ require('lazy').setup({
           ['ui-select'] = {
             require('telescope.themes').get_dropdown(),
           },
+          git_file_history = {
+            mappings = {
+              i = {
+                ['<C-g>'] = require('telescope').extensions.git_file_history.actions.open_in_browser,
+              },
+              n = {
+                ['<C-g>'] = require('telescope').extensions.git_file_history.actions.open_in_browser,
+              },
+            },
+
+            -- The command to use for opening the browser (nil or string)
+            -- If nil, it will check if xdg-open, open, start, wslview are available, in that order.
+            browser_command = nil,
+          },
         },
       }
 
