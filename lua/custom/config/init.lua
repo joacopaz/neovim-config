@@ -20,3 +20,7 @@ map('i', '<C-l>', '<Right>', { desc = 'Move right', unpack(opts) })
 
 -- Terminal configuration
 require 'custom.config.terminal'
+
+-- Dictionary
+vim.opt.spelllang = 'en_us'
+vim.opt.spell = true
