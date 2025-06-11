@@ -1,1 +1,6 @@
 Neovim
+map
+desc
+keymap
+noremap
+config

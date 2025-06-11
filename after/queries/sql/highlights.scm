@@ -1,0 +1,3 @@
+; inherits: sql
+
+(identifier) @spell
