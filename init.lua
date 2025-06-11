@@ -749,7 +749,7 @@ require('lazy').setup({
         preset = 'enter',
         ['<C-k>'] = { 'select_prev', 'fallback' },
         ['<C-j>'] = { 'select_next', 'fallback' },
-
+        ['<C-i>'] = { 'show' },
         -- For more advanced Luasnip keymaps (e.g. selecting choice nodes, expansion) see:
         --    https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
       },
@@ -780,13 +780,11 @@ require('lazy').setup({
             },
           },
         },
-        -- trigger = {
-        -- 	show_on_keyword = false,
-        -- },
         documentation = {
           auto_show = true,
           auto_show_delay_ms = 1,
         },
+        trigger = {},
       },
 
       sources = {
@@ -795,6 +793,9 @@ require('lazy').setup({
           snippets = {
             min_keyword_length = 2,
             score_offset = 4,
+            should_show_items = function(ctx)
+              return ctx.trigger.initial_kind ~= 'trigger_character'
+            end,
           },
           lsp = {
             min_keyword_length = 0,
