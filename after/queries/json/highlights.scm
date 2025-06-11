@@ -1,3 +1,0 @@
-; inherits: json
-
-(identifier) @spell

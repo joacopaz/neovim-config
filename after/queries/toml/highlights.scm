@@ -1,3 +1,0 @@
-; inherits: toml
-
-(identifier) @spell

@@ -1,3 +1,0 @@
-; inherits: query
-
-(identifier) @spell

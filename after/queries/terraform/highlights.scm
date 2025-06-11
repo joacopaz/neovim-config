@@ -1,3 +1,0 @@
-; inherits: terraform
-
-(identifier) @spell

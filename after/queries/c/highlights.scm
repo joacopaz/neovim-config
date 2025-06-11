@@ -1,3 +1,0 @@
-; inherits: c
-
-(identifier) @spell

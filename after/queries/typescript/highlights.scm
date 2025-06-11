@@ -1,3 +1,0 @@
-; inherits: typescript
-
-(identifier) @spell

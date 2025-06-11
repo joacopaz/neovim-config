@@ -1,3 +1,0 @@
-; inherits: lua
-
-(identifier) @spell

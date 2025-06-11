@@ -70,3 +70,10 @@ splitbelow
 neovim
 listchars
 whitespace
+configs
+Biome
+github
+#ttps
+https/!
+dependabot
+https
