@@ -564,18 +564,6 @@ require('lazy').setup({
         --    https://github.com/pmizio/typescript-tools.nvim
         --
         -- But for many setups, the LSP (`ts_ls`) will work just fine
-        biome = {
-          cmd = { 'biome', 'lsp-proxy' },
-          filetypes = {
-            'javascript',
-            'javascriptreact',
-            'typescript',
-            'typescriptreact',
-            'json',
-            'jsonc',
-          },
-        },
-
         lua_ls = {
           -- cmd = { ... },
           -- filetypes = { ... },
