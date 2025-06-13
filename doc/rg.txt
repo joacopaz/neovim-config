@@ -1,0 +1,23 @@
+*rg*
+
+Ripgrep Flags Help
+=================
+
+Ripgrep (`rg`) is a fast search tool used with Telescope in Neovim. Below are
+commonly used flags for ripgrep, especially with Telescope's `live_grep_args`.
+
+Flags:
+  -i                Case-insensitive search.
+  -w                Match whole words only.
+  -v <pattern>      Exclude lines matching <pattern> (regex).
+  -g <glob>         Include/exclude files by glob (e.g., `-g !*.json`).
+  --no-heading      Suppress file headers in output.
+
+View full ripgrep help:
+  :!rg --help
+
+For more Telescope integration details:
+  :help telescope.nvim
+  :help telescope-live-grep-args
+
+ vim:tw=78:ts=8:ft=help:norl:

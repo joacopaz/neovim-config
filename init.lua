@@ -346,6 +346,7 @@ require('lazy').setup({
       vim.keymap.set('n', '<leader>ss', builtin.builtin, { desc = '[S]earch [S]elect Telescope' })
       vim.keymap.set('n', '<leader>sw', builtin.grep_string, { desc = '[S]earch current [W]ord' })
       vim.keymap.set('n', '<leader>sg', builtin.live_grep, { desc = '[{S]earch by [G]rep' })
+      vim.keymap.set('n', '<leader>sG', ':Telescope live_grep_args<CR>', { desc = '[{S]earch by [G]rep with args' })
       vim.keymap.set('n', '<leader>sd', function()
         builtin.diagnostics { wrap_results = true, line_width = 'full' }
       end, { desc = '[S]earch [D]iagnostics' })
