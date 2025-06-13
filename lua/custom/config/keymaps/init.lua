@@ -16,6 +16,19 @@ map({ 'v', 'n' }, '<S-u>', ':m .-2<CR>', { desc = 'Move line up', unpack(opts) }
 map('i', '<C-h>', '<Left>', { desc = 'Move left', unpack(opts) })
 map('i', '<C-l>', '<Right>', { desc = 'Move right', unpack(opts) })
 
+-- Close buffer without closing window
+map('n', '<C-c>', function()
+  local current_buffer = vim.api.nvim_get_current_buf()
+  local buffer_count = #vim.api.nvim_list_bufs()
+  if buffer_count > 1 then
+    vim.cmd 'bnext'
+    vim.api.nvim_buf_delete(current_buffer, { force = false })
+  else
+    vim.cmd 'enew' -- Open a new empty buffer if no other buffers exist
+    vim.api.nvim_buf_delete(current_buffer, { force = false })
+  end
+end, { desc = 'Close current buffer without closing window', unpack(opts) })
+
 -- LSP utils
 map({ 'n', 'i' }, 'gro', ':TSToolsOrganizeImports<CR>', { desc = 'Organize imports (LSP)', unpack(opts) })
 map({ 'n', 'i' }, 'grf', ':LspEslintFixAll<CR>', { desc = 'Autofix all (eslint)', unpack(opts) })
