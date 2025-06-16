@@ -47,4 +47,5 @@ return {
       { '<leader>g', '<cmd>Git<CR>', desc = 'Git status (Fugitive)' },
     },
   },
+  'sindrets/diffview.nvim',
 }
