@@ -48,4 +48,22 @@ return {
     },
   },
   'sindrets/diffview.nvim',
+  {
+    'norcalli/nvim-colorizer.lua',
+    event = { 'BufReadPre', 'BufNewFile' }, -- Lazy-load on buffer read/new file
+    config = function()
+      require('colorizer').setup {
+        filetypes = { '*' }, -- Apply to all filetypes
+        user_default_options = {
+          RGB = true, -- #RGB hex codes
+          RRGGBB = true, -- #RRGGBB hex codes
+          names = true, -- Color names (e.g., "blue")
+          mode = 'background', -- Display mode
+        },
+      }
+    end,
+    keys = {
+      { '<Leader>c', '<cmd>ColorizerToggle<CR>', desc = 'Toggle Colorizer' }, -- Single-key toggle
+    },
+  },
 }

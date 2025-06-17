@@ -30,5 +30,5 @@ map('n', '<C-c>', function()
 end, { desc = 'Close current buffer without closing window', unpack(opts) })
 
 -- LSP utils
-map({ 'n', 'i' }, 'gro', ':TSToolsOrganizeImports<CR>', { desc = 'Organize imports (LSP)', unpack(opts) })
-map({ 'n', 'i' }, 'grf', ':LspEslintFixAll<CR>', { desc = 'Autofix all (eslint)', unpack(opts) })
+map({ 'n' }, 'gro', ':TSToolsOrganizeImports<CR>', { desc = 'Organize imports (LSP)', unpack(opts) })
+map({ 'n' }, 'grf', ':LspEslintFixAll<CR>', { desc = 'Autofix all (eslint)', unpack(opts) })
