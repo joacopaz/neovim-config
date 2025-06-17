@@ -50,7 +50,6 @@ return {
   'sindrets/diffview.nvim',
   {
     'norcalli/nvim-colorizer.lua',
-    event = { 'BufReadPre', 'BufNewFile' }, -- Lazy-load on buffer read/new file
     config = function()
       require('colorizer').setup {
         filetypes = { '*' }, -- Apply to all filetypes
