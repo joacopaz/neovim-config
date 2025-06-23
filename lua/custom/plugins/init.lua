@@ -42,6 +42,7 @@ return {
   },
   {
     'tpope/vim-fugitive',
+    lazy = false,
     cmd = { 'Git', 'G', 'Gdiffsplit', 'Gvdiffsplit', 'Gedit' }, -- lazy load
     keys = {
       { '<leader>g', '<cmd>Git<CR>', desc = 'Git status (Fugitive)' },
