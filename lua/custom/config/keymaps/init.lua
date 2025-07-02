@@ -32,6 +32,19 @@ end, { desc = 'Close current buffer without closing window', unpack(opts) })
 -- LSP utils
 map('n', 'gro', ':TSToolsOrganizeImports<CR>', { desc = 'Organize imports (LSP)', unpack(opts) })
 map('n', 'grf', ':LspEslintFixAll<CR>', { desc = 'Autofix all (eslint)', unpack(opts) })
+map('n', '<leader>rt', function()
+  local bufnr = vim.api.nvim_get_current_buf()
+  for _, client in ipairs(vim.lsp.get_active_clients { bufnr = bufnr }) do
+    if client.name == 'typescript-tools' then
+      vim.lsp.stop_client(client.id) -- stop typescript-tools
+    end
+  end
+
+  vim.defer_fn(function()
+    vim.cmd 'edit' -- reloads buffer
+    vim.notify('Restarted typescript-tools for current buffer', vim.log.levels.INFO)
+  end, 100)
+end, { desc = 'Restart TypeScript server', unpack(opts) })
 
 -- Quick fix list navigation
 map('n', '<A-j>', ':cnext<CR>', { desc = 'Next item in quick fix list', unpack(opts) })
