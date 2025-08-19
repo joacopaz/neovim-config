@@ -49,3 +49,12 @@ end, { desc = 'Restart TypeScript server', unpack(opts) })
 -- Quick fix list navigation
 map('n', '<A-j>', ':cnext<CR>', { desc = 'Next item in quick fix list', unpack(opts) })
 map('n', '<A-k>', ':cprevious<CR>', { desc = 'Previous item in quick fix list', unpack(opts) })
+
+-- Toggle relative line numbers
+map('n', '<leader>rl', function()
+  if vim.wo.relativenumber then
+    vim.wo.relativenumber = false
+  else
+    vim.wo.relativenumber = true
+  end
+end, { desc = 'Toggle relative line numbers', unpack(opts) })
