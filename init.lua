@@ -666,8 +666,8 @@ require('lazy').setup({
         json = { 'biome', 'prettierd', 'prettier', stop_after_first = true },
         yaml = { 'biome', 'prettierd', 'prettier', stop_after_first = true },
         html = { 'prettierd', 'prettier', stop_after_first = true },
-        css = { 'biome', 'prettierd', 'prettier', stop_after_first = true },
-        scss = { 'biome', 'prettierd', 'prettier', stop_after_first = true },
+        css = { 'some-sass-language-server', 'biome', 'prettierd', 'prettier', stop_after_first = true },
+        scss = { 'some-sass-language-server', 'biome', 'prettierd', 'prettier', stop_after_first = true },
       },
       formatters = {
         biome = {
