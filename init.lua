@@ -7,6 +7,13 @@ vim.g.maplocalleader = ' '
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = true
 
+-- Neovide config
+if vim.g.neovide then
+  vim.opt.guifont = '0xProto Nerd Font Mono:h9'
+  vim.g.neovide_scroll_animation_length = 0
+  vim.opt.linespace = 2
+end
+
 -- [[ Setting options ]]
 -- See `:help vim.o`
 -- NOTE: You can change these options as you wish!
