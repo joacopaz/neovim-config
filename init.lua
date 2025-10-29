@@ -675,13 +675,8 @@ require('lazy').setup({
         html = { 'prettierd', 'prettier', stop_after_first = true },
         css = { 'some-sass-language-server', 'biome', 'prettierd', 'prettier', stop_after_first = true },
         scss = { 'some-sass-language-server', 'biome', 'prettierd', 'prettier', stop_after_first = true },
-      },
-      formatters = {
-        biome = {
-          command = vim.fn.stdpath 'data' .. '/mason/bin/biome',
-          args = { 'format', '--stdin-file-path', '$FILENAME' },
-          stdin = true,
-        },
+        sh = { 'shfmt', stop_after_first = true },
+        bash = { 'shfmt', stop_after_first = true },
       },
     },
   },
