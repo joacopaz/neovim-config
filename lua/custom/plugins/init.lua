@@ -47,7 +47,6 @@ return {
   },
   {
     'tadaa/vimade',
-    -- default opts (you can partially set these or configure them however you like)
     opts = {
       -- Recipe can be any of 'default', 'minimalist', 'duo', and 'ripple'
       -- Set animate = true to enable animations on any recipe.
@@ -56,7 +55,7 @@ return {
       -- ncmode = 'windows' will fade inactive windows.
       -- ncmode = 'focus' will only fade after you activate the `:VimadeFocus` command.
       ncmode = 'buffers',
-      fadelevel = 0.4, -- any value between 0 and 1. 0 is hidden and 1 is opaque.
+      fadelevel = 0.8, -- any value between 0 and 1. 0 is hidden and 1 is opaque.
       -- Changes the real or theoretical background color. basebg can be used to give
       -- transparent terminals accurating dimming.  See the 'Preparing a transparent terminal'
       -- section in the README.md for more info.
