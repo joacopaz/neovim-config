@@ -5,5 +5,5 @@ vim.opt.foldenable = false
 
 -- Spell
 vim.opt.spelllang = 'en_us'
-vim.opt.spell = true
+vim.opt.spell = false
 vim.opt.spelloptions = 'camel'
