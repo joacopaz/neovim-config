@@ -12,6 +12,9 @@ map('n', '<F12>', ':Telescope git_status<CR>', { desc = 'Show git status', unpac
 map({ 'v', 'n' }, '<S-d>', ':m .+1<CR>', { desc = 'Move line down', unpack(opts) })
 map({ 'v', 'n' }, '<S-u>', ':m .-2<CR>', { desc = 'Move line up', unpack(opts) })
 
+-- Select all binding
+map({ 'v', 'n' }, '<C-a>', 'ggVGzz', { desc = 'Select All', unpack(opts) })
+
 -- Move in insert mode without arrow keys with C-h and C-l
 map('i', '<C-h>', '<Left>', { desc = 'Move left', unpack(opts) })
 map('i', '<C-l>', '<Right>', { desc = 'Move right', unpack(opts) })
