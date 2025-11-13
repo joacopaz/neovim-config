@@ -61,3 +61,13 @@ map('n', '<leader>rl', function()
     vim.wo.relativenumber = true
   end
 end, { desc = 'Toggle relative line numbers', unpack(opts) })
+
+-- Interactive resize
+map('n', '<C-r>', function()
+  local size = vim.fn.input 'New width: '
+  if tonumber(size) then
+    vim.cmd('vertical resize ' .. size)
+  else
+    print 'Invalid number'
+  end
+end, { desc = 'Resize window width', unpack(opts) })
