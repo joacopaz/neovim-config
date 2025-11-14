@@ -62,16 +62,15 @@ map('n', '<leader>rl', function()
   end
 end, { desc = 'Toggle relative line numbers', unpack(opts) })
 
--- Interactive resize
-local keys = { '<C-r>', '<C-w><C-r>' }
+map('n', '<C-w><C-r>', function()
+  local size = vim.fn.input 'New width: '
+  if tonumber(size) then
+    vim.cmd('vertical resize ' .. size)
+  else
+    print 'Invalid number'
+  end
+end, { desc = 'Resize window width', unpack(opts) })
 
-for _, key in ipairs(keys) do
-  map('n', key, function()
-    local size = vim.fn.input 'New width: '
-    if tonumber(size) then
-      vim.cmd('vertical resize ' .. size)
-    else
-      print 'Invalid number'
-    end
-  end, { desc = 'Resize window width', unpack(opts) })
-end
+-- Navigate tabs
+map({ 'n', 'i', 'v' }, '[t', ':tabprev<CR>', { desc = 'Previous Tab', unpack(opts) })
+map({ 'n', 'i', 'v' }, ']t', ':tabnext<CR>', { desc = 'Next Tab', unpack(opts) })
