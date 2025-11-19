@@ -20,7 +20,7 @@ map('i', '<C-h>', '<Left>', { desc = 'Move left', unpack(opts) })
 map('i', '<C-l>', '<Right>', { desc = 'Move right', unpack(opts) })
 
 -- Close buffer without closing window
-map('n', '<C-c>', function()
+local close_buffer_without_closing_window = function()
   local current_buffer = vim.api.nvim_get_current_buf()
   local buffer_count = #vim.api.nvim_list_bufs()
   if buffer_count > 1 then
@@ -30,7 +30,9 @@ map('n', '<C-c>', function()
     vim.cmd 'enew' -- Open a new empty buffer if no other buffers exist
     vim.api.nvim_buf_delete(current_buffer, { force = false })
   end
-end, { desc = 'Close current buffer without closing window', unpack(opts) })
+end
+
+map('n', '<C-c>', close_buffer_without_closing_window, { desc = 'Close current buffer without closing window', unpack(opts) })
 
 -- LSP utils
 map('n', 'gro', ':TSToolsOrganizeImports<CR>', { desc = 'Organize imports (LSP)', unpack(opts) })
@@ -74,3 +76,9 @@ end, { desc = 'Resize window width', unpack(opts) })
 -- Navigate tabs
 map({ 'n', 'i', 'v' }, '[t', ':tabprev<CR>', { desc = 'Previous Tab', unpack(opts) })
 map({ 'n', 'i', 'v' }, ']t', ':tabnext<CR>', { desc = 'Next Tab', unpack(opts) })
+
+-- Write and close command
+vim.api.nvim_create_user_command('W', function()
+  vim.cmd.write()
+  close_buffer_without_closing_window()
+end, { desc = 'Write and close current buffer' })
