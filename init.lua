@@ -1,3 +1,5 @@
+local USE_TRANSPARENT_BACKGROUND = false
+
 -- Set <space> as the leader key
 -- See `:help mapleader`
 --  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
@@ -412,7 +414,10 @@ require('lazy').setup({
       'WhoIsSethDaniel/mason-tool-installer.nvim',
 
       -- Useful status updates for LSP.
-      { 'j-hui/fidget.nvim', opts = {} },
+      {
+        'j-hui/fidget.nvim',
+        opts = USE_TRANSPARENT_BACKGROUND and { notification = { window = { winblend = 0 } } } or {},
+      },
 
       -- Allows extra capabilities provided by blink.cmp
       'saghen/blink.cmp',
@@ -570,7 +575,7 @@ require('lazy').setup({
       --  - settings (table): Override the default settings passed when initializing the server.
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
       local servers = {
-        -- clangd = {},
+        clangd = {},
         -- gopls = {},
         -- pyright = {},
         -- rust_analyzer = {},
@@ -654,7 +659,8 @@ require('lazy').setup({
         -- Disable "format_on_save lsp_fallback" for languages that don't
         -- have a well standardized coding style. You can add additional
         -- languages here or re-enable it for the disabled ones.
-        local disable_filetypes = { c = true, cpp = true }
+        --                           c = true, removed
+        local disable_filetypes = { cpp = true }
         if disable_filetypes[vim.bo[bufnr].filetype] then
           return nil
         else
@@ -671,13 +677,16 @@ require('lazy').setup({
         typescriptreact = { 'biome', 'prettierd', 'prettier', stop_after_first = true },
         javascriptreact = { 'biome', 'prettierd', 'prettier', stop_after_first = true },
         json = { 'biome', 'prettierd', 'prettier', stop_after_first = true },
-        yaml = { 'biome', 'prettierd', 'prettier', stop_after_first = true },
+        yaml = { 'yamlfmt', 'biome', 'prettierd', 'prettier', stop_after_first = true },
         html = { 'prettierd', 'prettier', stop_after_first = true },
         css = { 'some-sass-language-server', 'biome', 'prettierd', 'prettier', stop_after_first = true },
         scss = { 'some-sass-language-server', 'biome', 'prettierd', 'prettier', stop_after_first = true },
         sh = { 'shfmt', stop_after_first = true },
         bash = { 'shfmt', stop_after_first = true },
         groovy = { 'npm-groovy-lint', stop_after_first = true },
+        toml = { 'taplo', stop_after_first = true },
+        c = { 'clang_format', stop_after_first = true },
+        cpp = { 'clang_format', stop_after_first = true },
       },
     },
   },
@@ -825,20 +834,21 @@ require('lazy').setup({
     name = 'catppuccin',
     priority = 1000,
     opts = {
-      flavour = 'macchiato', -- latte, frappe, macchiato, mocha
-      integrations = {
-        telescope = true,
-        which_key = true,
-        treesitter = true,
-        cmp = true,
-        gitsigns = true,
-        nvimtree = true,
-      },
+      flavour = 'macchiato',
+      transparent_background = USE_TRANSPARENT_BACKGROUND,
+      custom_highlights = USE_TRANSPARENT_BACKGROUND and {
+        NormalFloat = { bg = 'none' },
+        TelescopeBorder = { bg = 'none' },
+      } or {},
     },
-    config = function()
-      vim.cmd.colorscheme 'catppuccin'
+    config = function(_, opts)
+      require('catppuccin').setup(opts)
+      vim.cmd.colorscheme 'catppuccin-macchiato'
       vim.api.nvim_set_hl(0, 'LineNr', { fg = '#94e2d5' })
       vim.api.nvim_set_hl(0, 'CursorLineNr', { fg = '#f9e2af', bold = true })
+      if USE_TRANSPARENT_BACKGROUND then
+        vim.api.nvim_set_hl(0, 'CursorLine', { bg = '#2e2e2e' })
+      end
     end,
   },
 

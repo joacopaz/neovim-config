@@ -1,5 +1,6 @@
 local map = vim.keymap.set
 local opts = { noremap = true, silent = true }
+local all_keys = { 'n', 'v', 'i' }
 
 -- Center on scroll up/down
 map('n', '<C-d>', '<C-d>zz', opts)
@@ -72,5 +73,5 @@ map('n', '<C-w><C-r>', function()
 end, { desc = 'Resize window width', unpack(opts) })
 
 -- Navigate tabs
-map({ 'n', 'i', 'v' }, '[t', ':tabprev<CR>', { desc = 'Previous Tab', unpack(opts) })
-map({ 'n', 'i', 'v' }, ']t', ':tabnext<CR>', { desc = 'Next Tab', unpack(opts) })
+map(all_keys, '[t', ':tabprev<CR>', { desc = 'Previous Tab', unpack(opts) })
+map(all_keys, ']t', ':tabnext<CR>', { desc = 'Next Tab', unpack(opts) })
