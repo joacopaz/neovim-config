@@ -625,7 +625,6 @@ require('lazy').setup({
         automatic_installation = false,
         automatic_enable = true,
         handlers = {
-          ['tsserver'] = function() end,
           function(server_name)
             local server = servers[server_name] or {}
             -- This handles overriding only values explicitly passed
@@ -687,6 +686,8 @@ require('lazy').setup({
         toml = { 'taplo', stop_after_first = true },
         c = { 'clang_format', stop_after_first = true },
         cpp = { 'clang_format', stop_after_first = true },
+        h = { 'clang_format', stop_after_first = true },
+        py = { 'black', stop_after_first = true },
       },
     },
   },
@@ -802,7 +803,7 @@ require('lazy').setup({
             score_offset = 1000,
           },
           path = {
-            min_keyword_length = 3,
+            min_keyword_length = 0,
             score_offset = 2,
           },
           buffer = {
@@ -931,6 +932,7 @@ require('lazy').setup({
         additional_vim_regex_highlighting = { 'ruby' },
       },
       indent = { enable = true, disable = { 'ruby' } },
+      fold = { enable = true },
     },
     -- There are additional nvim-treesitter modules that you can use to interact
     -- with nvim-treesitter. You should go explore a few and see what interests you:

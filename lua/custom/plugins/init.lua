@@ -32,13 +32,9 @@ return {
     'norcalli/nvim-colorizer.lua',
     config = function()
       require('colorizer').setup {
-        filetypes = { '*' }, -- Apply to all filetypes
-        user_default_options = {
-          RGB = true, -- #RGB hex codes
-          RRGGBB = true, -- #RRGGBB hex codes
-          names = true, -- Color names (e.g., "blue")
-          mode = 'background', -- Display mode
-        },
+        '*', -- Highlight all files, but customize some others.
+        css = { rgb_fn = true }, -- Enable parsing rgb(...) functions in css.
+        html = { names = false }, -- Disable parsing "names" like Blue or Gray
       }
     end,
     keys = {
