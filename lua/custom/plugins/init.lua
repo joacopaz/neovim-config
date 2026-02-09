@@ -6,4 +6,5 @@ return {
   require 'custom.plugins.colorizer',
   require 'custom.plugins.undotree',
   require 'custom.plugins.opencode',
+  require 'custom.plugins.markdown-viewer',
 }
