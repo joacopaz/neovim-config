@@ -903,13 +903,13 @@ require('lazy').setup({
   },
   { -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
-    build = ':TSUpdate',
-    main = 'nvim-treesitter.configs', -- Sets main module to use for opts
-    branch = 'master',
-    commit = '42fc28ba918343ebfd5565147a42a26580579482',
-    -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
-    opts = {
-      ensure_installed = {
+    branch = 'main',
+    lazy = false,
+    build = function()
+      require('nvim-treesitter').update()
+    end,
+    config = function()
+      local ensure_installed = {
         'bash',
         'c',
         'diff',
@@ -934,19 +934,28 @@ require('lazy').setup({
         'gitattributes',
         'gitignore',
         'git_config',
-      },
-      -- Autoinstall languages that are not installed
-      auto_install = true,
-      highlight = {
-        enable = true,
-        -- Some languages depend on vim's regex highlighting system (such as Ruby) for indent rules.
-        --  If you are experiencing weird indenting issues, add the language to
-        --  the list of additional_vim_regex_highlighting and disabled languages for indent.
-        additional_vim_regex_highlighting = { 'ruby' },
-      },
-      indent = { enable = true, disable = { 'ruby' } },
-      fold = { enable = true },
-    },
+      }
+      require('nvim-treesitter').install(ensure_installed)
+
+      vim.api.nvim_create_autocmd('FileType', {
+        callback = function(args)
+          local buf = args.buf
+          local ft = vim.bo[buf].filetype
+          local lang = vim.treesitter.language.get_lang(ft) or ft
+          if not pcall(vim.treesitter.start, buf, lang) then
+            return
+          end
+
+          vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+
+          if ft ~= 'ruby' then
+            vim.bo[buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+          else
+            vim.bo[buf].syntax = 'ON'
+          end
+        end,
+      })
+    end,
     -- There are additional nvim-treesitter modules that you can use to interact
     -- with nvim-treesitter. You should go explore a few and see what interests you:
     --

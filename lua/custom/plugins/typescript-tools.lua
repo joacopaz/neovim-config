@@ -7,6 +7,7 @@ return {
   opts = {
     expose_as_code_action = 'all',
     complete_function_calls = false,
+    filetypes = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact' },
     jsx_close_tag = { enable = true, filetypes = { 'javascriptreact', 'typescriptreact' } },
     settings = {
       tsserver_plugins = {
